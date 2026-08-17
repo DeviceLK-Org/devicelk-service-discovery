@@ -1,4 +1,12 @@
 spring:
+  config:
+    # See DeviceLK-Inventory/application.yml for the full reasoning. Short form:
+    # loads this service's own .env as a property source, relative to the process
+    # working directory; 'optional:' means a missing .env is not a startup
+    # failure; the file is parsed as .properties, so plain KEY=value lines only
+    # (no `export`, no quoting, no bare keys).
+    import: optional:file:./.env[.properties]
+
   application:
     name: ${SERVICE_NAME:devicelk-discovery-server}
   profiles:
